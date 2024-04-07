@@ -6,8 +6,8 @@ import { COLORS, icons, images, SIZES } from "../constants";
 import { Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome } from "../components";
 
 export default function Home() {
-
   const router = useRouter()
+  const [searchTerm, setSearchTerm] = useState('')
 
   return (
     <SafeAreaView
@@ -38,7 +38,13 @@ export default function Home() {
             }}
           >
             <Welcome 
-
+              searchTerm={searchTerm} 
+              setSearchTerm={setSearchTerm} 
+              handleClick={() => {
+                if (searchTerm) {
+                  router.push(`/search/${searchTerm}`)
+                }
+              }}
             />
 
             <Popularjobs />

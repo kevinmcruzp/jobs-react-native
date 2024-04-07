@@ -7,8 +7,14 @@ import { useRouter } from 'expo-router'
 
 const jobTypes = ['Full-time', 'Part-time', 'Contractor']
 
+type WelcomeProps = {
+  searchTerm: string
+  setSearchTerm: (searchTerm: string) => void
+  handleClick: () => void
+}
 
-const Welcome = () => {
+
+const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
   const router = useRouter()
   const [activeJobType, setActiveJobType] = useState('Full-time')
 
@@ -25,13 +31,13 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
-            value=''
-            onChange={() => {}}
+            value={searchTerm}
+            onChangeText={(text) => setSearchTerm(text)}
             placeholder='What are you looking for?'
           />
         </View>
 
-        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             source={icons.search}
             resizeMode='contain'
